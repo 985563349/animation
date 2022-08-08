@@ -6,3 +6,4 @@
 
 - [AirPods Pro](https://985563349.github.io/animation/AirPodsPro)
 - [MacBook Pro](https://985563349.github.io/animation/MacBookPro)
+- [Text Fade In](https://985563349.github.io/animation/TextFadeIn)
