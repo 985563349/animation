@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Animation On Scroll</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;700&display=swap');
+
+      body {
+        background-color: #131316;
+        color: #ffffff;
+        font-family: 'Poppins', sans-serif;
+        padding: 0;
+        margin: 0;
+      }
+
+      section {
+        display: grid;
+        place-items: center;
+        align-content: center;
+        min-height: 100vh;
+      }
+
+      .hidden {
+        opacity: 0;
+        filter: blur(5px);
+        transform: translateX(-100%);
+        transition: all 1s;
+      }
+
+      .show {
+        opacity: 1;
+        filter: blur(0);
+        transform: translateX(0);
+      }
+
+      .logos {
+        display: flex;
+      }
+
+      .logo:nth-child(2) {
+        transition-delay: 200ms;
+      }
+
+      .logo:nth-child(3) {
+        transition-delay: 400ms;
+      }
+
+      .logo:nth-child(4) {
+        transition-delay: 600ms;
+      }
+
+      .logo {
+        padding: 1rem;
+        margin: 0 0.5rem;
+      }
+
+      /* Reduce dynamic effects */
+      @media (prefers-reduced-motion) {
+        .hidden {
+          transform: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="hidden">
+      <h1>Hi Mom</h1>
+      <p>This is my website</p>
+    </section>
+
+    <section class="hidden">
+      <h2>Buy my product</h2>
+      <p>
+        The things you own end up owning you. It's only after you lose everything that you're free
+        to do anything
+      </p>
+    </section>
+
+    <section class="hidden">
+      <h2>It's really good</h2>
+
+      <div class="logos">
+        <div class="logo hidden">
+          <img src="https://avatars.dicebear.com/api/avataaars/11.svg?size=150" alt="avatar" />
+        </div>
+
+        <div class="logo hidden">
+          <img src="https://avatars.dicebear.com/api/avataaars/23.svg?size=150" alt="avatar" />
+        </div>
+
+        <div class="logo hidden">
+          <img src="https://avatars.dicebear.com/api/avataaars/69.svg?size=150" alt="avatar" />
+        </div>
+
+        <div class="logo hidden">
+          <img src="https://avatars.dicebear.com/api/avataaars/42.svg?size=150" alt="avatar" />
+        </div>
+      </div>
+    </section>
+
+    <script>
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          console.log(entry);
+          if (entry.isIntersecting) {
+            entry.target.classList.add('show');
+          } else {
+            entry.target.classList.remove('show');
+          }
+        });
+      });
+
+      const hiddenElements = document.querySelectorAll('.hidden');
+      hiddenElements.forEach((el) => observer.observe(el));
+    </script>
+  </body>
+</html>
